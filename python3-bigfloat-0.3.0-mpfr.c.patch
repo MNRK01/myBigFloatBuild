@@ -1,0 +1,81 @@
+--- mpfr.c.orig	2014-07-06 10:58:27.000000000 -0500
++++ mpfr.c	2018-10-30 22:34:44.194885900 -0500
+@@ -7654,7 +7654,7 @@
+  * def mpfr_pow(Mpfr_t rop not None, Mpfr_t op1 not None, Mpfr_t op2 not None,
+  */
+   __Pyx_XDECREF(__pyx_r);
+-  __pyx_t_2 = __Pyx_PyInt_From_int(mpfr_root((&__pyx_v_rop->_value), (&__pyx_v_op->_value), __pyx_v_k, __pyx_v_rnd)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 796; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
++  __pyx_t_2 = __Pyx_PyInt_From_int(mpfr_rootn_ui((&__pyx_v_rop->_value), (&__pyx_v_op->_value), __pyx_v_k, __pyx_v_rnd)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 796; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+   __Pyx_GOTREF(__pyx_t_2);
+   __pyx_r = __pyx_t_2;
+   __pyx_t_2 = 0;
+@@ -31259,12 +31259,12 @@
+     *value = local_value;
+     *tb = local_tb;
+ #if CYTHON_COMPILING_IN_CPYTHON
+-    tmp_type = tstate->exc_type;
+-    tmp_value = tstate->exc_value;
+-    tmp_tb = tstate->exc_traceback;
+-    tstate->exc_type = local_type;
+-    tstate->exc_value = local_value;
+-    tstate->exc_traceback = local_tb;
++    tmp_type = tstate->curexc_type;
++    tmp_value = tstate->curexc_value;
++    tmp_tb = tstate->curexc_traceback;
++    tstate->curexc_type = local_type;
++    tstate->curexc_value = local_value;
++    tstate->curexc_traceback = local_tb;
+     Py_XDECREF(tmp_type);
+     Py_XDECREF(tmp_value);
+     Py_XDECREF(tmp_tb);
+@@ -31286,12 +31286,12 @@
+     PyObject *tmp_type, *tmp_value, *tmp_tb;
+ #if CYTHON_COMPILING_IN_CPYTHON
+     PyThreadState *tstate = PyThreadState_GET();
+-    tmp_type = tstate->exc_type;
+-    tmp_value = tstate->exc_value;
+-    tmp_tb = tstate->exc_traceback;
+-    tstate->exc_type = *type;
+-    tstate->exc_value = *value;
+-    tstate->exc_traceback = *tb;
++    tmp_type = tstate->curexc_type;
++    tmp_value = tstate->curexc_value;
++    tmp_tb = tstate->curexc_traceback;
++    tstate->curexc_type = *type;
++    tstate->curexc_value = *value;
++    tstate->curexc_traceback = *tb;
+ #else
+     PyErr_GetExcInfo(&tmp_type, &tmp_value, &tmp_tb);
+     PyErr_SetExcInfo(*type, *value, *tb);
+@@ -31304,9 +31304,9 @@
+ static CYTHON_INLINE void __Pyx_ExceptionSave(PyObject **type, PyObject **value, PyObject **tb) {
+ #if CYTHON_COMPILING_IN_CPYTHON
+     PyThreadState *tstate = PyThreadState_GET();
+-    *type = tstate->exc_type;
+-    *value = tstate->exc_value;
+-    *tb = tstate->exc_traceback;
++    *type = tstate->curexc_type;
++    *value = tstate->curexc_value;
++    *tb = tstate->curexc_traceback;
+     Py_XINCREF(*type);
+     Py_XINCREF(*value);
+     Py_XINCREF(*tb);
+@@ -31318,12 +31318,12 @@
+ #if CYTHON_COMPILING_IN_CPYTHON
+     PyObject *tmp_type, *tmp_value, *tmp_tb;
+     PyThreadState *tstate = PyThreadState_GET();
+-    tmp_type = tstate->exc_type;
+-    tmp_value = tstate->exc_value;
+-    tmp_tb = tstate->exc_traceback;
+-    tstate->exc_type = type;
+-    tstate->exc_value = value;
+-    tstate->exc_traceback = tb;
++    tmp_type = tstate->curexc_type;
++    tmp_value = tstate->curexc_value;
++    tmp_tb = tstate->curexc_traceback;
++    tstate->curexc_type = type;
++    tstate->curexc_value = value;
++    tstate->curexc_traceback = tb;
+     Py_XDECREF(tmp_type);
+     Py_XDECREF(tmp_value);
+     Py_XDECREF(tmp_tb);
