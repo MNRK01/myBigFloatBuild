@@ -1,0 +1,11 @@
+--- mpfr.c.orig	2020-01-04 22:44:22.595311100 -0600
++++ mpfr.c	2020-01-04 22:47:23.568231000 -0600
+@@ -8549,7 +8549,7 @@
+  * def mpfr_pow(Mpfr_t rop not None, Mpfr_t op1 not None, Mpfr_t op2 not None,
+  */
+   __Pyx_XDECREF(__pyx_r);
+-  __pyx_t_2 = __Pyx_PyInt_From_int(mpfr_root((&__pyx_v_rop->_value), (&__pyx_v_op->_value), __pyx_v_k, __pyx_v_rnd)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 801, __pyx_L1_error)
++  __pyx_t_2 = __Pyx_PyInt_From_int(mpfr_rootn_ui((&__pyx_v_rop->_value), (&__pyx_v_op->_value), __pyx_v_k, __pyx_v_rnd)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 801, __pyx_L1_error)
+   __Pyx_GOTREF(__pyx_t_2);
+   __pyx_r = __pyx_t_2;
+   __pyx_t_2 = 0;
